@@ -12,13 +12,15 @@ interface IERC721{
 interface Token{
     function mint(address _platform, uint256 _amount) external;
     function burn(address _platform, uint256 _amount) external;
+    function transfer(address _to, uint256 _value) external returns (bool success);
 }
 
-contract CanaryFacet {
+contract Canary{
     uint256 treasury;
     uint256 period;
     address governanceToken;
     address contractOwner;
+
     uint256[] availableRights;
     mapping (uint256=>uint256) highestDeadline;
     mapping (address=>uint256) dividends;
@@ -60,18 +62,21 @@ contract CanaryFacet {
         _;
     }
 
-    function getRights(uint256 _rightid, uint256 _period) external payable {
+    constructor(address _owner){
+        contractOwner = _owner;
+    }
+
+    function getRights(uint256 _rightid, uint256 _period) external{
         require(isAvailable[_rightid],"NFT is not available");
         require(maxtime[_rightid] >= _period,"period is above the max period");
-        //after transpilation
-        //require(msg.value >= (dailyPrice[_rightid] * _period), "value is less than the required");
         require(maxRightsHolders[_rightid] > 0, "limit of right holders reached");
         require(rightsPeriod[_rightid][msg.sender] == 0,"already buy this right");
         require(_period > 0, "period is equal to 0");
         // take 5% of the right amount as fee
         maxRightsHolders[_rightid] = maxRightsHolders[_rightid] - 1;
-        //after transpilation
-        //treasury += msg.value * 500 / 10000;
+        uint256 value = dailyPrice[_rightid] * _period;
+        
+        treasury += value * 500 / 10000;
         
         rightsPeriod[_rightid][msg.sender] = _period;
         rightsOver[msg.sender].push(_rightid);
@@ -112,6 +117,8 @@ contract CanaryFacet {
         require(rightHolders[_rightid].length > 0, "right does not exists");
         uint256 amountToWithdraw = 0;
         uint256 j = 0;
+        Token ct = Token(governanceToken);
+        
         while(rightHolders[_rightid].length > 0){
             uint256 dl = deadline[_rightid][rightHolders[_rightid][j]];
             uint256 rp = rightsPeriod[_rightid][rightHolders[_rightid][j]];
@@ -136,8 +143,7 @@ contract CanaryFacet {
             }
         }
         emit RoyaltiesWithdraw(msg.sender, amountToWithdraw);
-        //after transpilation
-        //payable(msg.sender).transfer(amountToWithdraw);
+        ct.transfer(msg.sender, amountToWithdraw);
     }
 
     function withdrawNFT(uint256 _rightid, uint256 _rightIndex) external isNFTOwner(_rightid) {
