@@ -137,13 +137,14 @@ func burn{
         syscall_ptr: felt*, 
         pedersen_ptr: HashBuiltin*, 
         range_check_ptr
-}(platform felt, burned_value: Uint256) {
+}(platform: felt, burned_value: Uint256) {
     let (canary,) = canary_address.read();
     let (caller_address) = get_caller_address();
     with_attr error_message("Only Canary") {
         assert canary = caller_address;
     }
     ERC20._burn(platform, burned_value);
+    return();
 }
 
 @external
@@ -151,11 +152,12 @@ func mint{
         syscall_ptr: felt*, 
         pedersen_ptr: HashBuiltin*, 
         range_check_ptr
-}(recipient felt, minted_value: Uint256) {
+}(recipient: felt, minted_value: Uint256) {
     let (canary,) = canary_address.read();
     let (caller_address) = get_caller_address();
     with_attr error_message("Only Canary") {
         assert canary = caller_address;
     }
-    ERC20._mint(recipient, burned_value);
+    ERC20._mint(recipient, minted_value);
+    return ();
 }

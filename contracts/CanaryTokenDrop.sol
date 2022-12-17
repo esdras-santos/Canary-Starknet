@@ -19,9 +19,9 @@ contract CanaryTokenDrop {
 
     function drop(uint256 _amount) external {
         require(canary.balanceOf(address(this)) >= _amount, "not enough to drop");
-        uint256 amountToPay = _amount / 5;
-        // after transpilation: need to check if the caller has the right amount of STRK to pay for this drop
-        // after transpilation: need to send the STRK from the caller account to this drop cotract
+        require(_amount <= maximumToClaim, "cannot claim more than 10 CanaryTokens");
+        //uint256 amountToPay = _amount / 5;
+        //require(msg.sender.balance >= amountToPay);
         canary.transfer(msg.sender, _amount);
     }
 }
