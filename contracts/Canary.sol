@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+import "hardhat/console.sol";
+
 interface ERC721Metadata{
     function tokenURI(uint256 _tokenId) external view returns (string memory);
 }
@@ -13,6 +15,7 @@ interface Token{
     function mint(address _platform, uint256 _amount) external;
     function burn(address _platform, uint256 _amount) external;
     function transfer(address _to, uint256 _value) external returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract Canary{
@@ -72,10 +75,11 @@ contract Canary{
         require(maxRightsHolders[_rightid] > 0, "limit of right holders reached");
         require(rightsPeriod[_rightid][msg.sender] == 0,"already buy this right");
         require(_period > 0, "period is equal to 0");
+        Token ct = Token(governanceToken);
         // take 5% of the right amount as fee
         maxRightsHolders[_rightid] = maxRightsHolders[_rightid] - 1;
         uint256 value = dailyPrice[_rightid] * _period;
-        
+        ct.transferFrom(msg.sender, address(this), value);
         treasury += value * 500 / 10000;
         
         rightsPeriod[_rightid][msg.sender] = _period;
@@ -152,7 +156,7 @@ contract Canary{
         require( properties[msg.sender][_rightIndex] == _rightid, "wrong index for collection address");
         // conversion not allowed from "uint160" to "address" due to Warp change in address size to 251 bits
         // so the conversion will be from "uint256" to "address"
-        address erc721 = address(uint256(rightsOrigin[_rightid][0]));
+        address erc721 = address(uint160(uint256(rightsOrigin[_rightid][0])));
         uint256 nftid = uint256(rightsOrigin[_rightid][1]);
         _burn(_rightid, _rightIndex);
         highestDeadline[_rightid] = 0;
@@ -212,7 +216,7 @@ contract Canary{
         owner[rightid] = msg.sender;
         // conversion not allowed from "uint160" to "address" due to Warp change in address size to 251 bits
         // so the conversion will be from "uint256" to "address"
-        rightsOrigin[rightid].push(bytes32(uint256(_erc721)));
+        rightsOrigin[rightid].push(bytes32(uint256(uint160(_erc721))));
         rightsOrigin[rightid].push(bytes32(_nftid));
         rightUri[rightid] = _nftUri;
         isAvailable[rightid] = true;

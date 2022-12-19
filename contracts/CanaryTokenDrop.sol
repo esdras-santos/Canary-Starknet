@@ -1,19 +1,19 @@
 // this is a simple contract that may contain security issues. DO NOT USE THAT IN PRODUCTION
 pragma solidity ^0.8.9;
 
-interface CanaryToken{
+interface Token{
     function balanceOf(address _owner) external view returns (uint256 balance);
     function transfer(address _to, uint256 _value) external returns (bool success);
 }
 
 contract CanaryTokenDrop {
-    CanaryToken canary;
+    Token canary;
     uint256 public maximumToClaim;
 
     event Droped(address claimer, uint256 amount_claimed);
 
     constructor(address _canary) {
-        canary = CanaryToken(_canary);
+        canary = Token(_canary);
         maximumToClaim = 10 * (10 ** 18);
     }
 
