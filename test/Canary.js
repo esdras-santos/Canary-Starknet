@@ -169,16 +169,12 @@ describe('Canary protocol test', async function(){
         availability = await canary.availabilityOf(rights[1])
         assert.equal(availability, true)
         await expect(
-            canary.connect(accounts[1]).setAvailability(rights[1], false,'1')
+            canary.connect(accounts[1]).setAvailability(rights[1], false)
         ).to.be.revertedWith('only the NFT Owner')
         
-        await expect(
-            canary.setAvailability(rights[1], false,'2')
-        ).to.be.revertedWith('wrong index for rightid')
-
         let aux = rights[1]
         let tx
-        tx = await canary.setAvailability(rights[1], false,'1')
+        tx = await canary.setAvailability(rights[1], false)
         await tx.wait()
 
         rights = await canary.getAvailableNFTs()
@@ -188,7 +184,7 @@ describe('Canary protocol test', async function(){
         assert.equal(availability, false)
 
         // in this case the index doesn't matter
-        tx = await canary.setAvailability(aux, true,'0')
+        tx = await canary.setAvailability(aux, true)
         await tx.wait()
 
         rights = await canary.getAvailableNFTs()
@@ -254,44 +250,24 @@ describe('Canary protocol test', async function(){
         await canaryToken.connect(accounts[1]).approve(canary.address, `${Number(dailyPrice)*1}`)
         tx = await canary.connect(accounts[1]).getRights(rights[0], '1')
         await tx.wait()
-        let properties = await canary.propertiesOf(owner.address)
-        let i = 0
-        for(p of properties){
-            if(p.toString() === rights[0].toString()){
-                break
-            }
-            i++
-        }
+        
         await expect(
-            canary.withdrawNFT(rights[0], i)
+            canary.withdrawNFT(rights[0])
         ).to.be.revertedWith('highest right deadline should end before withdraw')
         var currentDateTime = new Date();
         await network.provider.send("evm_setNextBlockTimestamp", [parseInt(currentDateTime.getTime()/ 1000) + (86400 * 32)])
         await network.provider.send("evm_mine")
 
         await expect(
-            canary.withdrawNFT(rights[0], i)
+            canary.withdrawNFT(rights[0])
         ).to.be.revertedWith('NFT should be unavailable')
-
-        let available = await canary.getAvailableNFTs()
-        let j = 0
-        for(a of available){
-            if(a.toString() === rights[0].toString()){
-                break
-            }
-            j++
-        }
         
-        tx = await canary.setAvailability(rights[0], false, j)
+        tx = await canary.setAvailability(rights[0], false)
         await tx.wait()
-
-        await expect(
-            canary.withdrawNFT(rights[0], i+1)
-        ).to.be.revertedWith('wrong index for collection address')
 
         let origin = await canary.originOf(rights[0])
 
-        tx = await canary.withdrawNFT(rights[0], i)
+        tx = await canary.withdrawNFT(rights[0])
         await tx.wait()
       
         let o = await collection.ownerOf(origin[1])

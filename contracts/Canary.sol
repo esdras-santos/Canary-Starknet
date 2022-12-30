@@ -150,10 +150,18 @@ contract Canary{
         ct.transfer(msg.sender, amountToWithdraw);
     }
 
-    function withdrawNFT(uint256 _rightid, uint256 _rightIndex) external isNFTOwner(_rightid) {
+    function withdrawNFT(uint256 _rightid) external isNFTOwner(_rightid) {
         require(highestDeadline[_rightid] < block.timestamp, "highest right deadline should end before withdraw");
         require(isAvailable[_rightid] == false, "NFT should be unavailable");
-        require( properties[msg.sender][_rightIndex] == _rightid, "wrong index for collection address");
+        
+        uint256 _rightIndex;
+        for(uint256 i; i< properties[msg.sender].length; i++){
+            if(properties[msg.sender][i] == _rightid){
+                _rightIndex = i;
+                break;
+            }
+        }
+
         // conversion not allowed from "uint160" to "address" due to Warp change in address size to 251 bits
         // so the conversion will be from "uint256" to "address"
         address erc721 = address(uint160(uint256(rightsOrigin[_rightid][0])));
@@ -166,13 +174,16 @@ contract Canary{
 
     function setAvailability( 
         uint256 _rightid, 
-        bool _available, 
-        uint256 _nftindex) 
+        bool _available) 
         external isNFTOwner(_rightid) 
     {
         
-        if(isAvailable[_rightid] == true){
-            require(availableRights[_nftindex] == _rightid, "wrong index for rightid");
+        uint256 _nftindex;
+        for(uint256 i;i<availableRights.length-1;i++){
+            if(availableRights[i]  == _rightid){
+                _nftindex = i;
+                break;
+            }
         }
         if(_available == false){
             availableRights[_nftindex] = availableRights[availableRights.length - 1];
