@@ -13,14 +13,19 @@ from openzeppelin.token.erc20.library import ERC20
 func canary_address() -> (address: felt) {
 }
 
+@storage_var
+func owner_address() -> (address: felt) {
+}
+
 @constructor
 func constructor{
         syscall_ptr: felt*,
         pedersen_ptr: HashBuiltin*,
         range_check_ptr
-}(canary: felt) {
+}(owner: felt, canary: felt) {
     ERC20.initializer('CanaryToken', 'CT', 18);
     canary_address.write(canary);
+    owner_address.write(owner);
     return ();
 }
 
@@ -139,10 +144,15 @@ func burn{
         range_check_ptr
 }(platform: felt, burned_value: Uint256) {
     let (canary,) = canary_address.read();
+    let (owner,) = owner_address.read();
     let (caller_address) = get_caller_address();
-    with_attr error_message("Only Canary") {
-        assert canary = caller_address;
+
+    if (caller_address != canary) {
+        with_attr error_message("Only Canary") {
+            assert caller_address = owner;
+        }
     }
+    
     ERC20._burn(platform, burned_value);
     return();
 }
@@ -154,9 +164,12 @@ func mint{
         range_check_ptr
 }(recipient: felt, minted_value: Uint256) {
     let (canary,) = canary_address.read();
+    let (owner,) = owner_address.read();
     let (caller_address) = get_caller_address();
-    with_attr error_message("Only Canary") {
-        assert canary = caller_address;
+    if (caller_address != canary) {
+        with_attr error_message("Only Canary") {
+            assert caller_address = owner;
+        }
     }
     ERC20._mint(recipient, minted_value);
     return ();

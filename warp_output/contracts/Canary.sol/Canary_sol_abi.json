@@ -399,11 +399,6 @@
         "internalType": "bool",
         "name": "_available",
         "type": "bool"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_nftindex",
-        "type": "uint256"
       }
     ],
     "name": "setAvailability",
@@ -471,11 +466,6 @@
       {
         "internalType": "uint256",
         "name": "_rightid",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_rightIndex",
         "type": "uint256"
       }
     ],
