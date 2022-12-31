@@ -67,3 +67,7 @@ The Warp transpiler was much simple to use this time than the first time that I 
 
 
 
+
+
+Account address: 0x029c0a51cbd307e0cc98ed6ac9876bb2e6efc5078a012484cee1eea540867a77
+Public key: 0x061b26a2133ac04e1c55a3801558d3d78cf562f26815503e46d64c3da5ec9e05
