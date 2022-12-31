@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 // this is a simple contract that may contain security issues. DO NOT USE THAT IN PRODUCTION
 pragma solidity ^0.8.9;
 
