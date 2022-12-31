@@ -76,94 +76,71 @@
                 "type": "Uint256"
             }
         ],
-        "name": "getRights_1d3ae1b2",
+        "name": "getRights",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [
             {
-                "name": "__warp_23__erc721",
+                "name": "__warp_24__erc721",
                 "type": "felt"
             },
             {
-                "name": "__warp_24__nftid",
+                "name": "__warp_25__nftid",
                 "type": "Uint256"
             },
             {
-                "name": "__warp_25__dailyPrice",
+                "name": "__warp_26__dailyPrice",
                 "type": "Uint256"
             },
             {
-                "name": "__warp_26__maxPeriod",
+                "name": "__warp_27__maxPeriod",
                 "type": "Uint256"
             },
             {
-                "name": "__warp_27__amount",
+                "name": "__warp_28__amount",
                 "type": "Uint256"
             }
         ],
-        "name": "depositNFT_d21d34f4",
+        "name": "depositNFT",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [
             {
-                "name": "__warp_31__rightid",
+                "name": "__warp_32__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "withdrawRoyalties_5daa02ed",
+        "name": "withdrawRoyalties",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [
             {
-                "name": "__warp_39__rightid",
-                "type": "Uint256"
-            },
-            {
-                "name": "__warp_40__rightIndex",
+                "name": "__warp_40__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "withdrawNFT_3a0196af",
+        "name": "withdrawNFT",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [
             {
-                "name": "__warp_44__rightid",
+                "name": "__warp_46__rightid",
                 "type": "Uint256"
             },
             {
-                "name": "__warp_45__available",
-                "type": "felt"
-            },
-            {
-                "name": "__warp_46__nftindex",
-                "type": "Uint256"
-            }
-        ],
-        "name": "setAvailability_e0beb8c0",
-        "outputs": [],
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "__warp_47__rightid",
-                "type": "Uint256"
-            },
-            {
-                "name": "__warp_48__platform",
+                "name": "__warp_47__available",
                 "type": "felt"
             }
         ],
-        "name": "verifyRight_088ce803",
+        "name": "setAvailability",
         "outputs": [],
         "type": "function"
     },
@@ -178,10 +155,25 @@
                 "type": "felt"
             }
         ],
-        "name": "verified_24d73567",
+        "name": "verifyRight",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "__warp_53__rightid",
+                "type": "Uint256"
+            },
+            {
+                "name": "__warp_54__platform",
+                "type": "felt"
+            }
+        ],
+        "name": "verified",
         "outputs": [
             {
-                "name": "__warp_52",
+                "name": "__warp_55",
                 "type": "felt"
             }
         ],
@@ -191,20 +183,20 @@
     {
         "inputs": [
             {
-                "name": "__warp_62__newToken",
+                "name": "__warp_65__newToken",
                 "type": "felt"
             }
         ],
-        "name": "setGovernanceToken_f8570170",
+        "name": "setGovernanceToken",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [],
-        "name": "currentTreasury_0f265bdd",
+        "name": "currentTreasury",
         "outputs": [
             {
-                "name": "__warp_63",
+                "name": "__warp_66",
                 "type": "Uint256"
             }
         ],
@@ -214,14 +206,14 @@
     {
         "inputs": [
             {
-                "name": "__warp_64__rightid",
+                "name": "__warp_67__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "dailyPriceOf_ba987777",
+        "name": "dailyPriceOf",
         "outputs": [
             {
-                "name": "__warp_65",
+                "name": "__warp_68",
                 "type": "Uint256"
             }
         ],
@@ -231,14 +223,14 @@
     {
         "inputs": [
             {
-                "name": "__warp_66__rightid",
+                "name": "__warp_69__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "availableRightsOf_4394dd76",
+        "name": "availableRightsOf",
         "outputs": [
             {
-                "name": "__warp_67",
+                "name": "__warp_70",
                 "type": "Uint256"
             }
         ],
@@ -248,32 +240,11 @@
     {
         "inputs": [
             {
-                "name": "__warp_68__rightid",
+                "name": "__warp_71__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "maxPeriodOf_26e07ef6",
-        "outputs": [
-            {
-                "name": "__warp_69",
-                "type": "Uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "name": "__warp_70__rightid",
-                "type": "Uint256"
-            },
-            {
-                "name": "__warp_71__holder",
-                "type": "felt"
-            }
-        ],
-        "name": "rightsPeriodOf_ef3776d7",
+        "name": "maxPeriodOf",
         "outputs": [
             {
                 "name": "__warp_72",
@@ -286,19 +257,19 @@
     {
         "inputs": [
             {
-                "name": "__warp_73__rightsHolder",
+                "name": "__warp_73__rightid",
+                "type": "Uint256"
+            },
+            {
+                "name": "__warp_74__holder",
                 "type": "felt"
             }
         ],
-        "name": "rightsOf_9a9a4f46",
+        "name": "rightsPeriodOf",
         "outputs": [
             {
-                "name": "__warp_74_len",
-                "type": "felt"
-            },
-            {
-                "name": "__warp_74",
-                "type": "Uint256*"
+                "name": "__warp_75",
+                "type": "Uint256"
             }
         ],
         "stateMutability": "view",
@@ -307,27 +278,11 @@
     {
         "inputs": [
             {
-                "name": "__warp_75__owner",
+                "name": "__warp_76__rightsHolder",
                 "type": "felt"
             }
         ],
-        "name": "propertiesOf_c7c314e0",
-        "outputs": [
-            {
-                "name": "__warp_76_len",
-                "type": "felt"
-            },
-            {
-                "name": "__warp_76",
-                "type": "Uint256*"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getAvailableNFTs_32702c95",
+        "name": "rightsOf",
         "outputs": [
             {
                 "name": "__warp_77_len",
@@ -344,11 +299,11 @@
     {
         "inputs": [
             {
-                "name": "__warp_78__rightid",
-                "type": "Uint256"
+                "name": "__warp_78__owner",
+                "type": "felt"
             }
         ],
-        "name": "rightHoldersOf_e18138d7",
+        "name": "propertiesOf",
         "outputs": [
             {
                 "name": "__warp_79_len",
@@ -356,7 +311,23 @@
             },
             {
                 "name": "__warp_79",
-                "type": "felt*"
+                "type": "Uint256*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getAvailableNFTs",
+        "outputs": [
+            {
+                "name": "__warp_80_len",
+                "type": "felt"
+            },
+            {
+                "name": "__warp_80",
+                "type": "Uint256*"
             }
         ],
         "stateMutability": "view",
@@ -365,19 +336,19 @@
     {
         "inputs": [
             {
-                "name": "__warp_80__rightid",
+                "name": "__warp_81__rightid",
                 "type": "Uint256"
-            },
-            {
-                "name": "__warp_81__holder",
-                "type": "felt"
             }
         ],
-        "name": "holderDeadline_5e4df22c",
+        "name": "rightHoldersOf",
         "outputs": [
             {
+                "name": "__warp_82_len",
+                "type": "felt"
+            },
+            {
                 "name": "__warp_82",
-                "type": "Uint256"
+                "type": "felt*"
             }
         ],
         "stateMutability": "view",
@@ -388,12 +359,33 @@
             {
                 "name": "__warp_83__rightid",
                 "type": "Uint256"
+            },
+            {
+                "name": "__warp_84__holder",
+                "type": "felt"
             }
         ],
-        "name": "ownerOf_6352211e",
+        "name": "holderDeadline",
         "outputs": [
             {
-                "name": "__warp_84",
+                "name": "__warp_85",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "__warp_86__rightid",
+                "type": "Uint256"
+            }
+        ],
+        "name": "ownerOf",
+        "outputs": [
+            {
+                "name": "__warp_87",
                 "type": "felt"
             }
         ],
@@ -403,14 +395,14 @@
     {
         "inputs": [
             {
-                "name": "__warp_85__rightid",
+                "name": "__warp_88__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "availabilityOf_9fe8b786",
+        "name": "availabilityOf",
         "outputs": [
             {
-                "name": "__warp_86",
+                "name": "__warp_89",
                 "type": "felt"
             }
         ],
@@ -420,18 +412,18 @@
     {
         "inputs": [
             {
-                "name": "__warp_87__rightid",
+                "name": "__warp_90__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "rightURI_e6be6db1",
+        "name": "rightURI",
         "outputs": [
             {
-                "name": "__warp_88_len",
+                "name": "__warp_91_len",
                 "type": "felt"
             },
             {
-                "name": "__warp_88",
+                "name": "__warp_91",
                 "type": "felt*"
             }
         ],
@@ -441,18 +433,18 @@
     {
         "inputs": [
             {
-                "name": "__warp_89__rightid",
+                "name": "__warp_92__rightid",
                 "type": "Uint256"
             }
         ],
-        "name": "originOf_794b2a07",
+        "name": "originOf",
         "outputs": [
             {
-                "name": "__warp_90_len",
+                "name": "__warp_93_len",
                 "type": "felt"
             },
             {
-                "name": "__warp_90",
+                "name": "__warp_93",
                 "type": "Uint256*"
             }
         ],

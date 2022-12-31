@@ -57,6 +57,10 @@
     {
         "inputs": [
             {
+                "name": "owner",
+                "type": "felt"
+            },
+            {
                 "name": "canary",
                 "type": "felt"
             }
