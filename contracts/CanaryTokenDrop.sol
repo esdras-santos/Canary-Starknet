@@ -4,24 +4,32 @@ pragma solidity ^0.8.9;
 interface Token{
     function balanceOf(address _owner) external view returns (uint256 balance);
     function transfer(address _to, uint256 _value) external returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) external returns (bool success);
 }
 
 contract CanaryTokenDrop {
     Token canary;
-    uint256 public maximumToClaim;
+    Token l2Eth;
+    address public owner;
 
     event Droped(address claimer, uint256 amount_claimed);
 
-    constructor(address _canary) {
+    constructor(address _canary, address _l2Eth, address _owner) {
         canary = Token(_canary);
-        maximumToClaim = 10 * (10 ** 18);
+        l2Eth = Token(_l2Eth);
+        owner = _owner;
     }
 
     function drop(uint256 _amount) external {
         require(canary.balanceOf(address(this)) >= _amount, "not enough to drop");
-        require(_amount <= maximumToClaim, "cannot claim more than 10 CanaryTokens");
-        //uint256 amountToPay = _amount / 5;
-        //require(msg.sender.balance >= amountToPay);
+        uint256 amountToPay = _amount / 5;
+        l2Eth.transferFrom(msg.sender, address(this), amountToPay);
         canary.transfer(msg.sender, _amount);
+    }
+
+    function withdrawFunds() external {
+        require(msg.sender == owner, "Only owner");
+        uint256 balance = canary.balanceOf(address(this));
+        canary.transfer(owner, balance);
     }
 }
