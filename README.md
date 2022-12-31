@@ -66,24 +66,3 @@ The Warp transpiler was much simple to use this time than the first time that I 
 ## Testnet Deployment Links
 
 Carary ptotocol: [0x041b5ce9b2cdc12360be3d4b1a623487206c6709f794e6278757fb8528634eec](https://goerli.voyager.online/contract/0x041b5ce9b2cdc12360be3d4b1a623487206c6709f794e6278757fb8528634eec)
-
-
-
-Account address: 0x029c0a51cbd307e0cc98ed6ac9876bb2e6efc5078a012484cee1eea540867a77
-Public key: 0x061b26a2133ac04e1c55a3801558d3d78cf562f26815503e46d64c3da5ec9e05
-
-
-canary:
-Contract class hash: 0x1469e259107827d003fe651f32f50b6123bdbde748cdeead960f9d548de6bf0
-Transaction hash: 0x2d138db9310ea2ad8d687eaa12d72bf3afe49a3e6ec37dc329e2534a237928b
-
-Contract address: 0x041b5ce9b2cdc12360be3d4b1a623487206c6709f794e6278757fb8528634eec
-Transaction hash: 0x215eed32d17f15bbf1125a030a765bb34a2937e2cd1f140f465c76d6d3a673a
-
-canaryTokenDrop:
-Contract class hash: 0x30fbd3ac75de72474665bd32eb0ea5e9aaee77a52f9125a046fe77233c639f1
-Transaction hash: 0x5a6d6a6c56209e1c10f54df09741dd2d1a517ae58b0002a08de929e1ec2440b
-
-canaryTokne:
-Contract class hash: 0x2826aaa4dfb0bff77b4a04040d19d5995053e7f6bc4d8b7fde9ef16815b602
-Transaction hash: 0x113e89a9f5a279d3a0162f2d7105263de9adbfc63472918ad5989eecb275544
