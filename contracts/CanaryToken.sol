@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract CanaryToken is ERC20Votes {
+contract CanaryToken is ERC20 {
   uint256 public s_maxSupply = 100000000e18;
   address owner;
   address canary;
 
-  constructor(address _owner, address _canary) ERC20("CanaryToken", "CAT") ERC20Permit("CanaryToken") {
+  constructor(address _owner, address _canary) ERC20("CanaryToken", "CAT"){
     owner = _owner;
     canary = _canary;
   }
@@ -19,7 +19,7 @@ contract CanaryToken is ERC20Votes {
     address from,
     address to,
     uint256 amount
-  ) internal override(ERC20Votes) {
+  ) internal override {
     super._afterTokenTransfer(from, to, amount);
   }
 
@@ -33,11 +33,11 @@ contract CanaryToken is ERC20Votes {
     _burn(_to, _amount);
   }
 
-  function _mint(address to, uint256 amount) internal override(ERC20Votes) {
+  function _mint(address to, uint256 amount) internal override {
     super._mint(to, amount);
   }
 
-  function _burn(address account, uint256 amount) internal override(ERC20Votes) {
+  function _burn(address account, uint256 amount) internal override {
     super._burn(account, amount);
   }
 }
